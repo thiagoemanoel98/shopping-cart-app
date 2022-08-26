@@ -24,6 +24,7 @@ export default function Routes() {
                     options={{
                         headerShown: true,
                         headerTransparent: true,
+                        headerTitleAlign: 'center',
                         headerTitle: () => <Header />,
                     }}
                 />

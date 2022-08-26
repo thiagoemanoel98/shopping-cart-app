@@ -2,12 +2,12 @@ import React from "react";
 import { Image } from "react-native";
 import { Container } from "./styles";
 
-import logo from '../../assets/logo.png';
+import logo2 from '../../assets/logo2.png';
 
 const Header = () => {
     return(
         <Container>
-            <Image source = {logo}/>
+            <Image source = {logo2}/>
         </Container>
     )
 }

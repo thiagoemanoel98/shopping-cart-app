@@ -6,7 +6,7 @@ import Routes from './src/routes/routes';
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light" backgroundColor="#312e38"n/>
+      <StatusBar barStyle="light" backgroundColor="#312e38"/>
      <Routes/>
     </View>
   );
@@ -15,6 +15,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
 });
