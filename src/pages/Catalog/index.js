@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import FloatingCart from '../../components/FloatingCart';
 
 import {
     Container,
@@ -42,7 +43,7 @@ export default function Catalog() {
                             <ProductTitle>{item.title}</ProductTitle>
 
                             <PriceContainer>
-                                <ProductPrice>{item.price}</ProductPrice>
+                                <ProductPrice>{`R$ ${item.price}`}</ProductPrice>
                                 <ProductButton onPress={() => {}}>
                                     <ProductButtonText>
                                         Adicionar
@@ -58,6 +59,7 @@ export default function Catalog() {
                     )}
                 />
             </ProductContainer>
+            <FloatingCart />
         </Container>
     );
 }
