@@ -34,10 +34,10 @@ export default function Routes() {
                     name="Cart"
                     component={Cart}
                     options={{
-
+                        headerShown: true,
                         headerTransparent: true,
                         headerTitleAlign: 'center',
-                        headerBackTitleVisible: false,
+                        headerBackTitleVisible: true,
                         headerTitle: () => <Header />,
                         headerLeftContainerStyle: {
                             marginLeft: 20,
