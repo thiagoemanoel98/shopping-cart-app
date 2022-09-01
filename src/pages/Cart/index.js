@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import EmptyCart from '../../components/EmptyCart';
 
 import {
     ActionButton,
@@ -70,6 +71,7 @@ export default function Cart() {
             <ProductContainer>
                 <ProductList
                     data={products}
+                    ListEmptyComponent = {<EmptyCart />}
                     keyExtractor={() => {
                         (item) => item.id;
                     }}
