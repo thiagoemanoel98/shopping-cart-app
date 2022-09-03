@@ -71,9 +71,9 @@ export default function Cart() {
             <ProductContainer>
                 <ProductList
                     data={products}
-                    ListEmptyComponent = {<EmptyCart />}
-                    keyExtractor={() => {
-                        (item) => item.id;
+                    ListEmptyComponent={<EmptyCart />}
+                    keyExtractor={(item, index) => {
+                        return item.id;
                     }}
                     ListFooterComponent={<View />}
                     ListFooterComponentStyle={{
