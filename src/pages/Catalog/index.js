@@ -36,12 +36,11 @@ export default function Catalog() {
     ]);*/
 
     const [products, setProducts] = React.useState([]);
-
     React.useState(() => {
-        async function loadProducts(){
-            const { data } = await api.get('./products');
-            setProducts(data);
+        async function loadProducts() {
+            const { data } = await api.get('/products');
             console.log(data);
+            setProducts(data);
         }
 
         loadProducts();
