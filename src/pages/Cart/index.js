@@ -4,6 +4,8 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyCart from '../../components/EmptyCart';
 
+import * as CartActions from '../../store/modules/cart/actions';
+
 import {
     ActionButton,
     ActionContainer,
@@ -26,7 +28,7 @@ import {
 export default function Cart() {
     const dispatch = useDispatch();
 
-    const products = useSelector(({cart}) => cart);
+    const products = useSelector(({ cart }) => cart);
 
     // Variáveis só renderiza quando o estado do produto for alterado
     const cartSize = useMemo(() => {
@@ -43,6 +45,22 @@ export default function Cart() {
 
         return 'R$ ' + cartAmount;
     }, [products]);
+
+    function increment(product) {
+        dispatch(
+            CartActions.updateAmountRequest(product.id, product.amount + 1)
+        );
+    }
+
+    function decrement(product) {
+        dispatch(
+            CartActions.updateAmountRequest(product.id, product.amount - 1)
+        );
+    }
+
+    function removeFromCart(id) {
+        dispatch(CartActions.removeFromCart(id));
+    }
 
     return (
         <Container>
@@ -79,14 +97,20 @@ export default function Cart() {
                                 </TotalContainer>
                             </ProductTitleContainer>
                             <ActionContainer>
-                                <ActionButton onPress={() => {}}>
+                                <ActionButton onPress={() => increment(item)}>
                                     <FeatherIcon
                                         name="plus"
                                         color={'#E83f5b'}
                                         size={16}
                                     />
                                 </ActionButton>
-                                <ActionButton onPress={() => {}}>
+                                <ActionButton
+                                    onPress={() => {
+                                        item.amount > 1
+                                            ? decrement(item)
+                                            : removeFromCart(item.id);
+                                    }}
+                                >
                                     <FeatherIcon
                                         name="minus"
                                         color={'#E83f5b'}
