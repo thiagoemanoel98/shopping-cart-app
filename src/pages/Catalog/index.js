@@ -54,7 +54,10 @@ export default function Catalog() {
 
                             <PriceContainer>
                                 <ProductPrice>{`R$ ${item.price}`}</ProductPrice>
-                                <ProductButton onPress={(item) => handleAddToCart(item.id)}>
+
+                                <ProductButton
+                                    onPress={() => handleAddToCart(item.id)}
+                                >
                                     <ProductButtonText>
                                         Adicionar
                                     </ProductButtonText>
