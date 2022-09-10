@@ -10,7 +10,6 @@ function cart(state = [], action) {
 
         default:
             return state;
-            break;
     }
 }
 

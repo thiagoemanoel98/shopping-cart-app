@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import FloatingCart from '../../components/FloatingCart';
 import api from '../../services/api';
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
     Container,
@@ -18,22 +20,7 @@ import {
 } from './styles.js';
 
 export default function Catalog() {
-    /*const [products, setProducts] = React.useState([
-        {
-            id: '1',
-            title: 'Assinatura Trimestral',
-            image_url:
-                'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.png',
-            price: 150,
-        },
-        {
-            id: '2',
-            title: 'Assinatura Anual',
-            image_url:
-                'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.png',
-            price: 150,
-        },
-    ]);*/
+    const dispatch = useDispatch();
 
     const [products, setProducts] = React.useState([]);
     React.useState(() => {
@@ -45,6 +32,10 @@ export default function Catalog() {
 
         loadProducts();
     }, []);
+
+    function handleAddToCart(id) {
+        dispatch(CartActions.addToCartRequest(id));
+    }
 
     return (
         <Container>
@@ -63,7 +54,7 @@ export default function Catalog() {
 
                             <PriceContainer>
                                 <ProductPrice>{`R$ ${item.price}`}</ProductPrice>
-                                <ProductButton onPress={() => {}}>
+                                <ProductButton onPress={(item) => handleAddToCart(item.id)}>
                                     <ProductButtonText>
                                         Adicionar
                                     </ProductButtonText>
