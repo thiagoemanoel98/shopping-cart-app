@@ -26,7 +26,6 @@ export default function Catalog() {
     React.useState(() => {
         async function loadProducts() {
             const { data } = await api.get('/products');
-            console.log(data);
             setProducts(data);
         }
 

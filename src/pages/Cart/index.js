@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { useDispatch, useSelector } from 'react-redux';
 import EmptyCart from '../../components/EmptyCart';
 
 import {
@@ -23,32 +24,9 @@ import {
 } from './styles';
 
 export default function Cart() {
-    const [products, setProducts] = useState([
-        {
-            id: '1',
-            title: 'Assinatura Trimestral',
-            image_url:
-                'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.png',
-            price: 150,
-            quantity: 1,
-        },
-        {
-            id: '2',
-            title: 'Assinatura Trimestral',
-            image_url:
-                'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.png',
-            price: 150,
-            quantity: 2,
-        },
-        {
-            id: '3',
-            title: 'Assinatura Trimestral',
-            image_url:
-                'https://res.cloudinary.com/robertosousa1/image/upload/v1594492578/dio/quarterly_subscription_yjolpc.png',
-            price: 150,
-            quantity: 1,
-        },
-    ]);
+    const dispatch = useDispatch();
+
+    const products = useSelector(({cart}) => cart);
 
     // Variáveis só renderiza quando o estado do produto for alterado
     const cartSize = useMemo(() => {
@@ -59,7 +37,7 @@ export default function Cart() {
     // Para paginas/componentes muito grande... isso faz diferença
     const cartTotal = useMemo(() => {
         const cartAmount = products.reduce((accumulator, product) => {
-            const totalPrice = accumulator + product.price * product.quantity;
+            const totalPrice = accumulator + product.price * product.amount;
             return totalPrice;
         }, 0);
 
@@ -92,11 +70,11 @@ export default function Cart() {
 
                                 <TotalContainer>
                                     <ProductQuantity>
-                                        {item.quantity + 'x'}
+                                        {item.amount + 'x'}
                                     </ProductQuantity>
 
                                     <ProductPrice>
-                                        {item.price * item.quantity}
+                                        {item.price * item.amount}
                                     </ProductPrice>
                                 </TotalContainer>
                             </ProductTitleContainer>
